@@ -1,0 +1,43 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить блюдо</title>
+    <link type="text/css" rel="stylesheet" href="{% static 'css/add_dish.css' %}">
+</head>
+<body>
+<h1>Добавить блюдо в кулинарную книгу</h1>
+<div class="content">
+    <div class="form">
+        <form method="POST">
+            {% csrf_token %}
+            <label for=""></label>
+            <div>{{ form.name }}</div>
+            <div>
+                <input type="text" id="addproduct" placeholder="Введите название продукта">
+            </div>
+
+            <div>
+                <ul id="products_list">
+                {% for product in form.list_products %}
+                <li id = {{ product }} hidden>{{ product }}</li>
+                {% endfor %} 
+                </ul>
+            </div>
+            <div hidden>{{ form.products }}</div>
+            <div>{{ form.number_of_person }}</div>
+            <div>{{ form.steps }}</div> 
+            <input type="submit" value="Создать блюдо">
+        </form>
+    </div>
+    <div id = 'product_display'>
+        <h2>Выбранные продукты</h2>
+
+    </div>
+</div>
+
+<script type="text/javascript" src="{% static 'js/test_add_dish.js' %}"></script>
+</body>
+</html>
